@@ -1,6 +1,10 @@
 #include "Player.h"
 #include "DxLib.h"
-#include <iostream>
+#include "DeltaTime.h"
+#include "Parameter.h"
+#include "LoadImages.h"
+#include "Camera.h"
+//#include <iostream>
 
 Player::Player(LoadImages& _loadImages, Camera& _camera) : camera(_camera){
 
@@ -24,29 +28,24 @@ Player::Player(LoadImages& _loadImages, Camera& _camera) : camera(_camera){
 
 	isJump = false;
 
-	gravity = 10;
-
 	isGround = false;
 
 	isDead = false;
-
-	deltaTime = DeltaTime::GetInstance().GetDeltaTime();
-
-	cameraY = camera.GetCameraY();
 
 }
 
 void Player::Update() {
 
 	if (!isDead) {
-		cameraY = camera.GetCameraY();
 		//std::cout << isGround << std::endl;
+
+		previousPosition = position;
 
 		Run();
 		Jump();
 		Gravity();
 
-		deltaTime = DeltaTime::GetInstance().GetDeltaTime();
+		float deltaTime = DeltaTime::GetInstance().GetDeltaTime();
 
 		// direction.x,yに合わせて座標を変更
 		if (direction.x <= 0 && position.x > SCREEN_ORIGIN) {
@@ -93,14 +92,14 @@ void Player::Display() {
 	if (!isDead) {
 		// 拡大して描画できる
 		DrawExtendGraphF(
-			position.x, position.y - cameraY, // 左上座標
-			position.x + size.x, position.y + size.y - cameraY, // 右下座標
+			position.x, position.y - camera.GetCameraY(), // 左上座標
+			position.x + size.x, position.y + size.y - camera.GetCameraY(), // 右下座標
 			image, TRUE);
 	}
 	else {
 		DrawExtendGraphF(
-			position.x + size.x, position.y + size.y - cameraY,
-			position.x, position.y - cameraY,
+			position.x + size.x, position.y + size.y - camera.GetCameraY(),
+			position.x, position.y - camera.GetCameraY(),
 			image, TRUE);
 	}
 
@@ -142,7 +141,7 @@ void Player::Jump() {
 			isJump = true;
 		}
 
-		jumpTimer += deltaTime;
+		jumpTimer += DeltaTime::GetInstance().GetDeltaTime();
 
 		if (isJump) {
 			if (jumpTimer <= JUMP_TIME) {
@@ -163,7 +162,7 @@ void Player::Jump() {
 	}
 	direction.y += addedDirection.y;
 }
-
+	
 void Player::StopJump() {
 
 	addedDirection.y = 0;
@@ -174,7 +173,7 @@ void Player::Gravity() {
 
 	if (!isGround) {
 
-		addedDirection.y += gravity;
+		addedDirection.y += GRAVITY;
 	}
 	direction.y += addedDirection.y;
 }

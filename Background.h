@@ -1,7 +1,8 @@
 #pragma once
 #include "GameManagerMain.h"
-#include "LoadImages.h"
 #include "Vector2.h"
+
+class LoadImages;
 
 class Background : public GameManagerMain {
 public:

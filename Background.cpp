@@ -1,4 +1,6 @@
 #include "Background.h"
+#include "LoadImages.h"
+#include "Parameter.h"
 #include "DxLib.h"
 
 Background::Background(LoadImages& _loadImages) {

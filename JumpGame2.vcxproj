@@ -157,7 +157,7 @@
     <ClInclude Include="LoadImages.h" />
     <ClInclude Include="Needle.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Screen.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="StageMain.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitManager.h" />

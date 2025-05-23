@@ -1,10 +1,13 @@
 #pragma once
 #include "Vector2.h"
 #include "GameManagerMain.h"
-#include "Player.h"
-#include "UnitManager.h"
-#include "Unit.h"
-#include "Camera.h"
+
+class Player;
+class UnitManager;
+class Unit;
+class Camera;
+
+// â∫Ç©ÇÁóàÇΩèÍçáÇ∑ÇËî≤ÇØÇÈ
 
 class Collider : public GameManagerMain {
 public:
@@ -16,8 +19,6 @@ public:
 private:
 
     int unitCount;
-
-    float cameraY;
 
     // Player, UnitÇÃç¿ïW
     Vector2 playerPosition;
@@ -31,15 +32,15 @@ private:
     Unit** units;
     Camera& camera;
 
-    void HandleCollision(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
+    //void HandleCollision(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
 
-    void HitFeet(Unit* _unit, const Vector2& _unitPosition);
+    /*void HitFeet(Unit* _unit, const Vector2& _unitPosition);*/
 
-    void HitHead(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
+    //void HitHead(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
 
-    void HitRight(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
+    //void HitRight(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
 
-    void HitLeft(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
+    //void HitLeft(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);
 
     void HandleNoCollisions();
 

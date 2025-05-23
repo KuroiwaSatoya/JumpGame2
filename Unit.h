@@ -1,20 +1,19 @@
 #pragma once
 #include "Vector2.h"
 #include "StageMain.h"
-#include "Camera.h"
 
 class Unit {
 public:
 
-	Unit(Camera& _camera, bool _isAppearing);
+	Unit(bool _isAppearing);
 
 	~Unit() = default;
 
 	void Update(float _deltaTime);
 
-	void Display();
+	void Display(float _cameraY);
 
-	void Initialization();
+	void Initialization(float _playerPositionY);
 
 	void Deactivate();
 
@@ -49,10 +48,4 @@ private:
 
 	// ストップするかどうか
 	bool isStop;
-
-	// cameraY
-	float cameraY;
-
-	// インスタンスの宣言
-	Camera& camera;
 };

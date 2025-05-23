@@ -1,9 +1,8 @@
 #pragma once
-#include "LoadImages.h"
-#include "Screen.h"
 #include "Vector2.h"
-#include "DeltaTime.h"
-#include "Camera.h"
+
+class LoadImages;
+class Camera;
 
 class Player {
 public:
@@ -16,9 +15,15 @@ public:
 
 	void StopJump();
 
-	Vector2 GetPosition() { return position; }
+	Vector2 GetPosition() const { return position; }
 
-	Vector2 GetSize() { return size; }
+	Vector2 GetPreviousPosition() const { return previousPosition; }
+
+	Vector2 GetAddedDirection() const { return addedDirection; }
+
+	Vector2 GetSize() const { return size; }
+
+	bool GetIsGround() const { return isGround; }
 
 	void SetPositionX(float _positionX) { position.x = _positionX; }
 
@@ -27,8 +32,6 @@ public:
 	void SetIsGround(bool _isGround) { isGround = _isGround; }
 
 	void SetIsDead(bool _isDead) { isDead = _isDead; }
-
-	void SetDeltaTime(float _deltaTime) { deltaTime = _deltaTime; }
 
 private:
 
@@ -42,7 +45,7 @@ private:
 	Vector2 size;
 
 	// Playerのx,y座標
-	Vector2 position;
+	Vector2 position, previousPosition;
 
 	// Playerの移動方向
 	Vector2 direction, addedDirection;
@@ -58,20 +61,11 @@ private:
 	float jumpTimer;
 	bool isJump;
 
-	// 重力加速度
-	float gravity;
-
 	// Playerが地面に着いているか
 	bool isGround;
 
 	// GameOverかどうか
 	bool isDead;
-
-	// デルタタイム
-	float deltaTime;
-
-	// カメラY
-	float cameraY;
 
 	// 横移動
 	void Run();

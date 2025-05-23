@@ -3,7 +3,7 @@
 //#include <iostream> // Œã‚ÅÁ‚·
 #include "DxLib.h"
 #include "DeltaTime.h"
-#include "Screen.h"
+#include "Parameter.h"
 #include "LoadImages.h"
 #include "GameManagerMain.h"
 #include "Background.h"
@@ -29,7 +29,7 @@ bool InitDX() {
 	// DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
 	if (DxLib_Init() == -1)
 	{
-		return -1;
+		return false;
 	}
 
 	// •`‰ææ‚ğ— ‰æ–Ê‚É‚·‚é
@@ -80,7 +80,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Player player(loadImages, camera);
 
 	StageMain* stages[STAGE_ARRAY_SIZE];
-	UnitManager* unitManager = new UnitManager(camera);
+	UnitManager* unitManager = new UnitManager(player, camera);
 	stages[STAGE_UNIT_MANAGER] = unitManager;
 	stages[STAGE_NEEDLE] = new Needle();
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "GameManagerMain.h"
-#include "DeltaTime.h"
 
 class Camera : public GameManagerMain {
 public:
@@ -29,5 +28,5 @@ private:
 
 	float timer;
 
-	float startMoveTime;
+	const float START_MOVE_TIME = 3;
 };

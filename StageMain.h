@@ -1,5 +1,4 @@
 #pragma once
-#include "Screen.h"
 
 class StageMain {
 public:

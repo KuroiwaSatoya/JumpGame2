@@ -1,13 +1,14 @@
 #pragma once
-
 #include "Unit.h"
-#include "DeltaTime.h"
-#include "Camera.h"
+
+class Camera;
+class Unit;
+class Player;
 
 class UnitManager : public StageMain {
 public:
 
-    UnitManager(Camera& _camera);
+    UnitManager(Player& _player, Camera& _camera);
     ~UnitManager();
 
     void Update() override;
@@ -24,7 +25,7 @@ private:
     int unitCount;
 
     // 移動距離に応じて出現
-    float movement, cameraY, lastCameraY;
+    float movement, lastCameraY;
     const float SPAWN_INTERVAL = 50.0f;
 
     float deltaTime;
@@ -35,6 +36,7 @@ private:
     // インスタンスの宣言
     Unit* units[MAX_UNITS];
     Camera& camera;
+    Player& player;
 
     void SpawnUnit();
 };

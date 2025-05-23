@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "DeltaTime.h"
 //#include <iostream> // Œã‚ÅÁ‚·
 
 Camera::Camera() {
@@ -11,8 +12,6 @@ Camera::Camera() {
 
 	deltaTime = DeltaTime::GetInstance().GetDeltaTime();
 
-	startMoveTime = 3;
-
 	timer = 0;
 
 	isStartGame = false;
@@ -24,7 +23,7 @@ void Camera::Update() {
 
 	if (!isStartGame) {
 		timer += deltaTime;
-		if (timer >= startMoveTime) {
+		if (timer >= START_MOVE_TIME) {
 			isStartGame = true;
 		}
 	}

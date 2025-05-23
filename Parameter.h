@@ -8,3 +8,5 @@ constexpr int SCREEN_HEIGHT = 720;
 constexpr int SCREEN_ORIGIN = 0;
 
 constexpr int COLOR_DEPTH = 32;
+
+constexpr float GRAVITY = 10;

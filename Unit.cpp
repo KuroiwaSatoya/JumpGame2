@@ -1,11 +1,11 @@
 #include "Unit.h"
-#include "Screen.h"
+#include "Parameter.h"
 #include "DxLib.h"
 #include <cstdlib>
 //#include <iostream> // 後で消す
 
 // 1つ目のUnitの初期化
-Unit::Unit(Camera& _camera, bool _isAppearing) : camera(_camera) {
+Unit::Unit(bool _isAppearing) {
 
 	// GetColor(255, 255, 255)と同じ(16進数の色表記でOK)
 	unitColor = 0xFFFFFF;
@@ -24,13 +24,9 @@ Unit::Unit(Camera& _camera, bool _isAppearing) : camera(_camera) {
 	isAppearing = _isAppearing;
 
 	isStop = false;
-
-	cameraY = camera.GetCameraY();
 }
 
 void Unit::Update(float _deltaTime) {
-
-	cameraY = camera.GetCameraY();
 
 	if (isAppearing && !isStop) {
 
@@ -47,30 +43,30 @@ void Unit::Update(float _deltaTime) {
 	}
 }
 
-void Unit::Display() {
+void Unit::Display(float _cameraY) {
 
 	if (isAppearing) {
 
 		DrawBox(
 			// 描画する四角形の左上頂点
-			position.x, position.y - cameraY,
+			position.x, position.y - _cameraY,
 			// 右下頂点
-			position.x + size.x, position.y + size.y - cameraY,
+			position.x + size.x, position.y + size.y - _cameraY,
 			//塗りつぶすか
 			unitColor, TRUE);
 
 		// 縁取り
 		DrawBox(
 			// 描画する四角形の左上頂点
-			position.x, position.y - cameraY,
+			position.x, position.y - _cameraY,
 			// 右下頂点
-			position.x + size.x, position.y + size.y - cameraY,
+			position.x + size.x, position.y + size.y - _cameraY,
 			//塗りつぶすか
 			unitLineColor, FALSE);
 	}
 }
 
-void Unit::Initialization() {
+void Unit::Initialization(float _playerPositionY) {
 
 	// GetColor(255, 255, 255)と同じ(16進数の色表記でOK)
 	unitColor = 0xFFFFFF;
@@ -89,7 +85,7 @@ void Unit::Initialization() {
 	// 右から来るか左から来るかをランダムに設定
 	isComingFromLeft = rand() % 2 == 0;
 
-	float y = cameraY + 250.0f + static_cast<float>(rand()) / RAND_MAX * 100.0f;
+	float y = _playerPositionY - static_cast<float>(rand()) / RAND_MAX * 200.0f;
 
 	//std::cout << cameraY << std::endl;
 
