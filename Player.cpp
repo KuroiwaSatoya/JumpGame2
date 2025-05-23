@@ -138,27 +138,29 @@ void Player::Jump() {
 	// スペースキーが押されてるなら
 	if (CheckHitKey(KEY_INPUT_SPACE) || CheckHitKey(KEY_INPUT_UP)) {
 
-		if (isGround && !isJump) {
+		if (isGround) {
 			isJump = true;
-			jumpTimer = 0.0f;
 		}
 
-		if (isJump && jumpTimer <= JUMP_TIME) {
-			jumpTimer += deltaTime;
-			addedDirection.y = -jumpForce;
+		jumpTimer += deltaTime;
+
+		if (isJump) {
+			if (jumpTimer <= JUMP_TIME) {
+				addedDirection.y = -jumpForce;
+			}
+			else {
+				isJump = false;
+			}
 		}
+	}
+	// 押されていないならdirectionYを0に
+	else if (isGround) {
+		jumpTimer = 0;
+		StopJump();
 	}
 	else {
 		isJump = false;
-		jumpTimer = 0.0f;
 	}
-
-	// 地面にいるならジャンプ状態をリセット
-	if (isGround) {
-		isJump = false;
-		jumpTimer = 0.0f;
-	}
-
 	direction.y += addedDirection.y;
 }
 
