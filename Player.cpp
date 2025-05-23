@@ -153,13 +153,12 @@ void Player::Jump() {
 		jumpTimer = 0.0f;
 	}
 
-	// 地面にいるならジャンプ状態リセット
+	// 地面にいるならジャンプ状態をリセット
 	if (isGround) {
 		isJump = false;
 		jumpTimer = 0.0f;
 	}
 
-	// 方向にジャンプ加速を追加
 	direction.y += addedDirection.y;
 }
 
