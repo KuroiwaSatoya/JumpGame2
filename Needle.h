@@ -9,7 +9,7 @@ public:
 
 	void Display() override;
 
-	float GetTriangleVertexesY1() { return triangleVertexesY1; }
+	float GetTriangleVertexesY1() const { return triangleVertexesY1; }
 
 private:
 

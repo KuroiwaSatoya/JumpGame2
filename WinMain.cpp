@@ -43,7 +43,7 @@ void GameManagerDraw(GameManagerMain* _gameManagerMain) {
 }
 
 // プログラムの開始
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
@@ -79,12 +79,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	Player player(loadImages, camera);
 
-	StageMain* stages[STAGE_ARRAY_SIZE];
+	StageMain* stages[STAGE_ARRAY_SIZE] = {};
 	UnitManager* unitManager = new UnitManager(player, camera);
 	stages[STAGE_UNIT_MANAGER] = unitManager;
 	stages[STAGE_NEEDLE] = new Needle();
 
-	GameManagerMain* gameManagers[GAMEMANAGER_ARRAY_SIZE];
+	GameManagerMain* gameManagers[GAMEMANAGER_ARRAY_SIZE] = {};
 	gameManagers[GAMEMANAGER_BACKGROUND] = new Background(loadImages);
 	gameManagers[GAMEMANAGER_CAMERA] = &camera;
 	gameManagers[GAMEMANAGER_COLLIDER] = new Collider(player, unitManager, camera);

@@ -15,7 +15,7 @@ public:
 
     void Display() override;
 
-    Unit** GetUnits() { return units; }
+    Unit* const* GetUnits() const { return units; }
     int GetUnitCount() const { return unitCount; }
 
 private:
