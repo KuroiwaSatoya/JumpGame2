@@ -29,7 +29,7 @@ private:
     // 各クラスのインスタンスの保持
     Player& player;
     UnitManager* unitManager;
-    Unit** units;
+    Unit* const* units;
     Camera& camera;
 
     //void HandleCollision(Unit* _unit, const Vector2& _unitPosition, const Vector2& _unitSize);

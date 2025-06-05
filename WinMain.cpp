@@ -48,7 +48,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	AllocConsole();
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 	//std::cout << "コンソールが起動" << std::endl;
-	srand(time(nullptr));
+	srand(static_cast<unsigned int>(time(nullptr)));
 
 	if (!InitDX()) {
 		//std::cout << "InitDXが失敗" << std::endl;
